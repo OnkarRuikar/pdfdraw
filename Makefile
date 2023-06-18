@@ -42,10 +42,10 @@ check-translations: l10n
 	fi
 
 npm: package.json package-lock.json
-	npm ci
+	/home/usr/.nvm/versions/node/v20.2.0/bin/npm ci
 
 build: npm
-	npm run build
+	/home/usr/.nvm/versions/node/v20.2.0/bin/npm run build
 
 clean:
 	rm -rf $(CURDIR)/3rdparty/pdfjs

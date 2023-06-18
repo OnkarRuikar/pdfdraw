@@ -71,6 +71,11 @@ var PERMISSION_DELETE = 8;
 var PERMISSION_SHARE = 16;
 var PERMISSION_ALL = 31;
 
+
+function getHTObject(url) {
+  return url.indexOf('https') === 0? https : http;
+}
+
 function isEmpty(obj) {
   return Object.keys(obj).length === 0 && obj.constructor === Object;
 }
@@ -109,7 +114,7 @@ function performOcsRequest(token, request_url, body, method) {
       options.method = method ? method : "GET";
     }
 
-    var req = https.request(options, function(response) {
+    var req = getHTObject(u.protocol).request(options, function(response) {
       var data = [];
       response.on('data', function(chunk) {
         data.push(chunk);
@@ -197,7 +202,7 @@ Room.prototype.loadItems = function() {
   var request_url = this.ocs_url + "/api/v1/item/" + this.id;
   var token = this.createToken();
   performOcsRequest(token, request_url).then(function(items) {
-    console.log("Received items", items);
+    //console.log("Received items", items);
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
       this._addItem(item.name, item.page, item.data);
@@ -404,7 +409,7 @@ Room.prototype.downloadFile = function(token) {
       }
     };
 
-    var req = https.request(options, function(response) {
+    var req = getHTObject(u.protocol).request(options, function(response) {
       var data = [];
       response.on('data', function(chunk) {
         data.push(chunk);
@@ -766,11 +771,12 @@ var server = http.createServer(function(request, response) {
   }
 
   var u = url.parse(request.url);
-  if (u.pathname.indexOf("/download/") !== 0) {
+  if (u.pathname.indexOf("/download/") === -1) {
     response.writeHead(404, {
-      "Content-Type": "text/plain"
+      "Content-Type": "text/plain",
+      "Access-Control-Allow-Origin": "*"
     });
-    response.end('Not Found');
+    response.end('File Not Found!');
     return;
   }
 
@@ -778,9 +784,10 @@ var server = http.createServer(function(request, response) {
   if (!rooms.hasOwnProperty(room_id)) {
     console.log("Unknown room", room_id);
     response.writeHead(404, {
-      "Content-Type": "text/plain"
+      "Content-Type": "text/plain",
+      "Access-Control-Allow-Origin":"*"
     });
-    response.end('Not Found');
+    response.end('Room Not Found!');
     return;
   }
 

@@ -93,7 +93,7 @@ msgid "Backend server"
 msgstr ""
 
 #: templates/settings/admin/backend.php:13
-msgid "https://server.domain.invalid/path/"
+msgid "https://server.domain.invalid/"
 msgstr ""
 
 #: templates/settings/admin/backend.php:14

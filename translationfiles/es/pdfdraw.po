@@ -100,8 +100,8 @@ msgid "Backend server"
 msgstr "Servidor de Base de Datos"
 
 #: templates/settings/admin/backend.php:13
-msgid "https://server.domain.invalid/path/"
-msgstr "https://server.domain.invalid/path/"
+msgid "https://server.domain.invalid/"
+msgstr "https://server.domain.invalid/"
 
 #: templates/settings/admin/backend.php:14
 #: templates/settings/admin/backend.php:20

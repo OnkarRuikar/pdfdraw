@@ -15,7 +15,7 @@ OC.L10N.register(
     "Annotate" : "Annotieren",
     "Open" : "Öffnen",
     "Backend server" : "Backend-Server",
-    "https://server.domain.invalid/path/" : "https://server.domain.invalid/path/",
+    "https://server.domain.invalid" : "https://server.domain.invalid/",
     "Saved" : "Gespeichert",
     "Shared secret" : "Geteiltes Geheimnis",
     "Stroke width" : "Linienbreite",

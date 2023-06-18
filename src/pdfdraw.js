@@ -1454,7 +1454,7 @@ Annotator.prototype.documentLoaded = function(pdfDocument) {
     this.onMessage(message);
   }
 
-  if (this.connectingMessage) {
+  if (this.connectingMessage && !this.socket.connected) {
     this.connectingMessage.show();
   }
 };
